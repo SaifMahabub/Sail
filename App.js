@@ -9,9 +9,12 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TextInput,
+  TouchableHighlight,
   View
 } from 'react-native';
 import io from 'socket.io-client';
+import './ReactotronConfig';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -25,8 +28,13 @@ export default class App extends Component<{}> {
     super(props);
   }
 
-  componentWillMount() {
+  state = {
+    text: ''
+  }
 
+  componentWillMount() {
+    this.initializeSocketConnection();
+    this.initalizeSocketListeners();
   }
 
   /**
@@ -41,19 +49,38 @@ export default class App extends Component<{}> {
     });
   }
 
+  initalizeSocketListeners() {
+    this.socket.on('receive', function(data){
+        alert('Boom' + data.text);
+    });
+  }
+
+  onPressButton() {
+    this.socket.emit('send');
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center'
+          }}
+        >
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+          <TouchableHighlight onPress={this.onPressButton}>
+            <Text
+              style={{
+                background: '#000',
+                color: '#fff'
+              }}
+            >Send Message</Text>
+          </TouchableHighlight>
+        </View>
     );
   }
 }
