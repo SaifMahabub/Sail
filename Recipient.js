@@ -16,15 +16,7 @@ import {
 } from 'react-native';
 import io from 'socket.io-client';
 import './ReactotronConfig';
-import './Router';
-import { Actions } from 'react-native-router-flux';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 const socket = io('https://obscure-forest-49040.herokuapp.com/', { transports: ['websocket'] }); //Connection to the node server
 
@@ -75,7 +67,9 @@ export default class App extends Component<{}> {
             value={this.state.text}
             underlineColorAndroid='rgba(0,0,0,0)'
           />
-          <TouchableHighlight onPress={this.onPressButton.bind(this)}>
+          <TouchableHighlight onPress={this.onPressButton.bind(this)}
+
+          >
             <View
               style={{
                 backgroundColor: 'black',
@@ -96,51 +90,6 @@ export default class App extends Component<{}> {
               >Send Message</Text>
             </View>
           </TouchableHighlight>
-
-          <TouchableHighlight onPress = {()=>{Actions.recipient();}}>
-            <View
-            style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
-            }}
-            >
-            <Text
-            style={{
-              color: '#fff',
-              textAlign: 'center',
-              fontSize: 15
-            }}
-            >Recipient</Text>
-            </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight onPress = {()=>{Actions.sender();}}>
-            <View
-            style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
-            }}
-            >
-            <Text
-            style={{
-              color: '#fff',
-              textAlign: 'center',
-              fontSize: 15
-            }}
-            >Sender</Text>
-            </View>
-          </TouchableHighlight>
-
         </View>
     );
   }
