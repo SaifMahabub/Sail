@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import {
+  Linking,
   Platform,
   StyleSheet,
   Text,
@@ -23,40 +24,37 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const socket = io('https://obscure-forest-49040.herokuapp.com/', { transports: ['websocket'] }); //Connection to the node server
+
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
+    this.onPressButton = this.onPressButton.bind(this);
   }
 
   state = {
-    text: ''
+    text: null
   }
 
   componentWillMount() {
-    this.initializeSocketConnection();
     this.initalizeSocketListeners();
   }
 
-  /**
-   * This method initializes the socket connection, creating a channel for
-   * the student to communicate with the tutor
-   */
-  initializeSocketConnection() {
-    this.socket = io('https://obscure-forest-49040.herokuapp.com/', { transports: ['websocket'] }); //Connection to the node server
-    // Authenticates the user
-    this.socket.on('connect', () => {
-      alert('boom bitch!');
-    });
-  }
-
   initalizeSocketListeners() {
-    this.socket.on('receive', function(data){
-        alert('Boom' + data.text);
+    socket.on('receive', function(data){
+        alert('Booma' + data.text);
     });
   }
 
   onPressButton() {
-    this.socket.emit('send');
+    const message = {
+        text: this.state.text
+    }
+    socket.emit('send', message);
+    // Step 1 post data to datbaase
+    // Step 2 send socket connectoin
+    // Step 3
+    // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
   }
 
   render() {
@@ -64,21 +62,39 @@ export default class App extends Component<{}> {
         <View
           style={{
             flex: 1,
-            justifyContent: 'center'
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={{height: 40, borderColor: 'gray', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
+            underlineColorAndroid='rgba(0,0,0,0)'
           />
-          <TouchableHighlight onPress={this.onPressButton}>
-            <Text
+          <TouchableHighlight onPress={this.onPressButton.bind(this)}
+
+          >
+            <View
               style={{
-                background: '#000',
-                color: '#fff'
+                backgroundColor: 'black',
+                width: 120,
+                paddingTop: 10,
+                paddingRight: 10,
+                paddingBottom: 10,
+                paddingLeft: 10,
+                borderRadius: 5
               }}
-            >Send Message</Text>
+            >
+              <Text
+                style={{
+                  color: '#fff',
+                  textAlign: 'center',
+                  fontSize: 15
+                }}
+              >Send Message</Text>
+            </View>
           </TouchableHighlight>
         </View>
     );
