@@ -36,19 +36,9 @@ export default class App extends Component<{}> {
 
   initalizeSocketListeners() {
     socket.on('receive', function(data){
-        alert('Booma' + data.text);
+        alert('Message: ' + data.text);
         // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
     });
-  }
-
-  onPressButton() {
-    const message = {
-        text: this.state.text
-    }
-    socket.emit('send', message);
-    // Step 1 post data to datbaase
-    // Step 2 send socket connectoin
-    // Step 3
   }
 
   render() {
@@ -61,35 +51,6 @@ export default class App extends Component<{}> {
             alignItems: 'center',
           }}
         >
-          <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-            underlineColorAndroid='rgba(0,0,0,0)'
-          />
-          <TouchableHighlight onPress={this.onPressButton.bind(this)}
-
-          >
-            <View
-              style={{
-                backgroundColor: 'black',
-                width: 120,
-                paddingTop: 10,
-                paddingRight: 10,
-                paddingBottom: 10,
-                paddingLeft: 10,
-                borderRadius: 5
-              }}
-            >
-              <Text
-                style={{
-                  color: '#fff',
-                  textAlign: 'center',
-                  fontSize: 15
-                }}
-              >Send Message</Text>
-            </View>
-          </TouchableHighlight>
         </View>
     );
   }

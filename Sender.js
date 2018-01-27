@@ -42,12 +42,12 @@ export default class App extends Component<{}> {
     this.initalizeSocketListeners();
   }
 
-  initalizeSocketListeners() {
-    socket.on('receive', function(data){
-        alert('Booma' + data.text);
-        // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
-    });
-  }
+  // initalizeSocketListeners() {
+  //   socket.on('receive', function(data){
+  //       alert('Booma' + data.text);
+  //       // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
+  //   });
+  // }
 
   onPressButton() {
     const message = {
@@ -57,10 +57,6 @@ export default class App extends Component<{}> {
     // Step 1 post data to datbaase
     // Step 2 send socket connectoin
     // Step 3
-  }
-
-  onClick() {
-    Actions.recipient();
   }
 
   render() {
@@ -100,51 +96,6 @@ export default class App extends Component<{}> {
               >Send Message</Text>
             </View>
           </TouchableHighlight>
-
-          <TouchableHighlight onPress = {()=>{this.onClick.bind(this)}}>
-            <View
-            style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
-            }}
-            >
-              <Text
-              style={{
-                color: '#fff',
-                textAlign: 'center',
-                fontSize: 15
-              }}
-              >Recipient</Text>
-            </View>
-          </TouchableHighlight>
-
-          <TouchableHighlight onPress = {()=>{Actions.sender();}}>
-            <View
-            style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
-            }}
-            >
-            <Text
-            style={{
-              color: '#fff',
-              textAlign: 'center',
-              fontSize: 15
-            }}
-            >Sender</Text>
-            </View>
-          </TouchableHighlight>
-
         </View>
     );
   }
