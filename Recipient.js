@@ -23,7 +23,6 @@ const socket = io('https://obscure-forest-49040.herokuapp.com/', { transports: [
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
-    this.onPressButton = this.onPressButton.bind(this);
   }
 
   state = {
@@ -36,8 +35,8 @@ export default class App extends Component<{}> {
 
   initalizeSocketListeners() {
     socket.on('receive', function(data){
-        alert('Message: ' + data.text);
-        // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));.
+        // alert('Message: ' + data.text);
+        Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));.
     });
   }
 
