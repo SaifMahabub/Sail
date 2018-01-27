@@ -39,7 +39,6 @@ export default class App extends Component<{}> {
   }
 
   componentWillMount() {
-    this.initalizeSocketListeners();
   }
 
   // initalizeSocketListeners() {

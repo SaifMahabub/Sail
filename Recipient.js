@@ -37,7 +37,7 @@ export default class App extends Component<{}> {
   initalizeSocketListeners() {
     socket.on('receive', function(data){
         alert('Message: ' + data.text);
-        // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
+        // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));.
     });
   }
 
