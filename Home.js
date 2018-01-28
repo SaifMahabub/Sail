@@ -12,6 +12,7 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
   View
 } from 'react-native';
 import io from 'socket.io-client';
@@ -42,51 +43,60 @@ export default class App extends Component<{}> {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: '#77A8AB'
           }}
         >
-          <TouchableHighlight onPress={this.onRecipientClick.bind(this)}>
+          <TouchableOpacity onPress={this.onRecipientClick.bind(this)}>
             <View
             style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
+              marginRight:40,
+              marginLeft:40,
+              marginTop:10,
+              paddingTop:20,
+              paddingBottom:20,
+              paddingLeft:40,
+              paddingRight:40,
+              backgroundColor:'#eaab00',
+              borderRadius:10,
+              borderWidth: 2,
+              borderColor: '#fff'
             }}
             >
               <Text
               style={{
                 color: '#fff',
                 textAlign: 'center',
-                fontSize: 15
+                fontSize: 26
               }}
               >Recipient</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
-          <TouchableHighlight onPress = {this.onSenderClick.bind(this)}>
+          <TouchableOpacity onPress = {this.onSenderClick.bind(this)}>
             <View
             style={{
-              backgroundColor: 'black',
-              width: 120,
-              paddingTop: 10,
-              paddingRight: 10,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              borderRadius: 5
+              marginRight:40,
+              marginLeft:40,
+              marginTop:60,
+              paddingTop:20,
+              paddingBottom:20,
+              paddingLeft:50,
+              paddingRight:50,
+              backgroundColor:'#eaab00',
+              borderRadius:10,
+              borderWidth: 2,
+              borderColor: '#fff'
             }}
             >
             <Text
             style={{
               color: '#fff',
               textAlign: 'center',
-              fontSize: 15
+              fontSize: 26
             }}
             >Sender</Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
         </View>
     );

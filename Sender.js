@@ -63,11 +63,28 @@ export default class App extends Component<{}> {
         <View
           style={{
             flex: 1,
-            flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: '#F5FCFF',
           }}
         >
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            borderColor: '#003946',
+            borderWidth: 2,
+            width: 200,
+            marginBottom: 40,
+            marginTop: 40,
+          }}>
+        <Text> X Medical details </Text>
+        <Text> Medication type </Text>
+
+
+        </View>
+
+
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
             onChangeText={(text) => this.setState({text})}
