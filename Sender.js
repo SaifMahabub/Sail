@@ -18,6 +18,7 @@ import io from 'socket.io-client';
 import './ReactotronConfig';
 import './Router';
 import { Actions } from 'react-native-router-flux';
+import { create } from 'apisauce';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -39,6 +40,7 @@ export default class App extends Component<{}> {
   }
 
   componentWillMount() {
+
   }
 
   // initalizeSocketListeners() {
@@ -49,9 +51,25 @@ export default class App extends Component<{}> {
   // }
 
   onPressButton() {
+    // Step 1 Update Database
+    const data = new FormData();
+    data.append('text', this.state.text);
+    const api = create({
+      baseURL: 'http://ffbcm.org'
+    });
+
+    api
+      .post('/trial.php', data)
+      .then(repsonse => {
+        Reactotron.log(response);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
     const message = {
         text: this.state.text
     }
+    // Step 2 Send Socket Connection
     socket.emit('send', message);
     // Step 1 post data to datbaase
     // Step 2 send socket connectoin
