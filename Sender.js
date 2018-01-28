@@ -34,6 +34,7 @@ export default class App extends Component<{}> {
   constructor(props) {
     super(props);
     this.onPressButton = this.onPressButton.bind(this);
+    this.initalizeSocketListener();
   }
 
   state = {
@@ -41,7 +42,13 @@ export default class App extends Component<{}> {
     confirm: true
   }
 
-  onPressButton() {
+  initalizeSocketListener() {
+      socket.on('sendconfirm', function(data){
+        alert('donezo');
+      });
+  }
+
+  PressButton() {
     this.setState({confirm: false})
     // Step 1 Update Database
     const data = new FormData();
@@ -105,7 +112,7 @@ export default class App extends Component<{}> {
             }}
           > Message your Elder</Text>
           <TextInput
-            style={{height: 40, borderColor: '#fff', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
+            style={{height: 40, borderColor: '#fff', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20; color: '#fff'}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
             underlineColorAndroid='rgba(0,0,0,0)'
