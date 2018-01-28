@@ -9,9 +9,9 @@ const RouterComponent = () => {
     return (
         <Router>
           <Scene key="root">
-            <Scene initial key="home" component={Home} title="Select Role" />
-            <Scene key="receive" component={Recipient} title="You have received..." />
-            <Scene key="send" component={Sender} title="Send a message..." />
+            <Scene initial key="home" component={Home} title="Select Role"  hideNavBar={true}/>
+            <Scene key="receive" component={Recipient} title="You have received..." hideNavBar={true}/>
+            <Scene key="send" component={Sender} title="Send a message..." hideNavBar={true}/>
           </Scene>
         </Router>
     );

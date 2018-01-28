@@ -46,6 +46,9 @@ export default class App extends Component<{}> {
             backgroundColor: '#77A8AB'
           }}
         >
+          <Text style={{ fontSize: 50, paddingBottom: 20, color: '#fff'}}>
+            Sail Hello
+          </Text>
           <TouchableOpacity onPress={this.onRecipientClick.bind(this)}>
             <View
             style={{
@@ -64,7 +67,7 @@ export default class App extends Component<{}> {
             >
               <Text
               style={{
-                color: '#fff',
+                color: 'rgba(0,0,0,0.6)',
                 textAlign: 'center',
                 fontSize: 26
               }}
@@ -90,7 +93,7 @@ export default class App extends Component<{}> {
             >
             <Text
             style={{
-              color: '#fff',
+              color: 'rgba(0,0,0,0.6)',
               textAlign: 'center',
               fontSize: 26
             }}

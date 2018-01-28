@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import io from 'socket.io-client';
 import './ReactotronConfig';
+import IsWaiting from './IsWaiting';
 
 
 const socket = io('https://obscure-forest-49040.herokuapp.com/', { transports: ['websocket'] }); //Connection to the node server
@@ -48,8 +49,18 @@ export default class App extends Component<{}> {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: '#77A8AB'
           }}
         >
+          <Text
+            style={{
+              fontSize: 30,
+              textAlign: 'center',
+              fontWeight: '500',
+              color: '#fff'
+            }}
+          >We will let you know when you get messages!</Text>
+          <IsWaiting />
         </View>
     );
   }

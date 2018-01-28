@@ -19,6 +19,7 @@ import './ReactotronConfig';
 import './Router';
 import { Actions } from 'react-native-router-flux';
 import { create } from 'apisauce';
+import IsWaiting from './IsWaiting';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -36,21 +37,12 @@ export default class App extends Component<{}> {
   }
 
   state = {
-    text: null
+    text: null,
+    confirm: true
   }
-
-  componentWillMount() {
-
-  }
-
-  // initalizeSocketListeners() {
-  //   socket.on('receive', function(data){
-  //       alert('Booma' + data.text);
-  //       // Linking.openURL('http://adrielfabella.com').catch(err => console.error('An error occurred', err));
-  //   });
-  // }
 
   onPressButton() {
+    this.setState({confirm: false})
     // Step 1 Update Database
     const data = new FormData();
     data.append('text', this.state.text);
@@ -71,40 +63,49 @@ export default class App extends Component<{}> {
     }
     // Step 2 Send Socket Connection
     socket.emit('send', message);
-    // Step 1 post data to datbaase
-    // Step 2 send socket connectoin
-    // Step 3
   }
 
   render() {
+    if(!this.state.confirm) {
+      return (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#77A8AB'
+          }}
+        >
+          <Text
+            style={{
+              marginBottom: 40,
+              fontSize: 30,
+              color: '#fff',
+              textAlign: 'center'
+            }}
+          >Waiting Confirmation From your Grandpapa</Text>
+          <IsWaiting />
+        </View>
+      );
+    }
     return (
         <View
           style={{
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#F5FCFF',
+            backgroundColor: '#77A8AB'
           }}
         >
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            borderColor: '#003946',
-            borderWidth: 2,
-            width: 200,
-            marginBottom: 40,
-            marginTop: 40,
-          }}>
-        <Text> X Medical details </Text>
-        <Text> Medication type </Text>
-
-
-        </View>
-
-
+          <Text
+            style={{
+              marginBottom: 40,
+              fontSize: 30,
+              color: '#fff'
+            }}
+          > Message your Elder</Text>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
+            style={{height: 40, borderColor: '#fff', borderWidth: 1, width: 300, borderRadius: 5, marginBottom: 20}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
             underlineColorAndroid='rgba(0,0,0,0)'
@@ -112,7 +113,7 @@ export default class App extends Component<{}> {
           <TouchableHighlight onPress={this.onPressButton.bind(this)}>
             <View
               style={{
-                backgroundColor: 'black',
+                backgroundColor: '#eaab00',
                 width: 120,
                 paddingTop: 10,
                 paddingRight: 10,
